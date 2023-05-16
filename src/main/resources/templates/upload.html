@@ -1,0 +1,121 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8"></meta>
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+	<script src="/jquery-3.1.1.slim.min.js"></script>
+	<script src="/tether.min.js"></script>
+	<script src="/bootstrap.min.js"></script>
+	<style>
+		div.gallery {
+			margin: 15px;
+			float: left;
+			width: 250px;
+		}
+
+		div.gallery img {
+			width: 100%;
+			height: 25%;
+		}
+	</style>
+	<link href="/bootstrap.min.css" rel="stylesheet"></link>
+	<link href="/navbar-top-fixed.css" rel="stylesheet"></link>
+</head>
+<body>
+
+<nav
+		class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+	<button class="navbar-toggler navbar-toggler-right" type="button"
+			data-toggle="collapse" data-target="#navbarCollapse"
+			aria-controls="navbarCollapse" aria-expanded="false"
+			aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<a class="navbar-brand" href="/">My Photos</a>
+	<div class="collapse navbar-collapse" id="navbarCollapse">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active"><a class="nav-link" href="/find">Find
+				Photos <span class="sr-only">(current)</span>
+			</a></li>
+			<li class="nav-item active"><a class="nav-link" href="/users">Users</a></li>
+			<li class="nav-item active" sec:authorize="!isAuthenticated()"><a
+					class="nav-link" href="/login">Login</a></li>
+			<li class="nav-item active" sec:authorize="isAuthenticated()"><a
+					class="nav-link" href="javascript:$('#logoutForm').submit();">Logout</a></li>
+			<li class="nav-item active" sec:authorize="!isAuthenticated()"><a
+					class="nav-link" href="/register">Register</a></li>
+
+		</ul>
+
+	</div>
+</nav>
+
+<form id="logoutForm" method="post" action="/logout">
+
+	<input type="hidden" th:name="${_csrf.parameterName}"
+		   th:value="${_csrf.token}" />
+
+</form>
+	
+
+
+	<div>
+		<section class="uploadpage">
+			<div class="container-upload">
+				<form method="POST" enctype="multipart/form-data" action="/">
+					<div class="form_div">
+						<label for="picture-upload">Upload a picture:</label>
+						<input type="file" id="picture-upload" name="file" accept="image/*">
+						<input type="hidden" th:name="${_csrf.parameterName}"th:value="${_csrf.token}" />
+						<div class="preview_div">
+							<img id="preview" src="#" alt="Image preview">
+						</div>
+						<button type="submit">Submit</button>
+					</div>
+				</form>
+			</div>
+		</section>
+
+	</div>
+
+	<div th:each="file : ${files}">
+		<div class="gallery">
+			<a target="_blank" th:href="${file}"> <img th:src="${file}"
+				height="200" />
+			</a>
+			<div>
+				<form action="/delete" method="POST">
+					<table>
+						<input type="hidden" th:value="*{file}" name="text" readonly="true" />
+						<input type="hidden" th:name="${_csrf.parameterName}"
+							th:value="${_csrf.token}" />
+						<td><input type="submit" value="Delete" /></td>
+					</table>
+				</form>
+				<form action="/download" method="GET">
+					<input type="hidden" th:value="*{file}" name="text" readonly="true" />
+					<input type="hidden" th:name="${_csrf.parameterName}"
+						   th:value="${_csrf.token}" />
+					<button type="submit">Download</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script>
+		const pictureUpload = document.getElementById('picture-upload');
+		const preview = document.getElementById('preview');
+
+		pictureUpload.addEventListener('change', function() {
+			const file = this.files[0];
+			if (file) {
+				const reader = new FileReader();
+				reader.addEventListener('load', function() {
+					preview.setAttribute('src', reader.result);
+				});
+				reader.readAsDataURL(file);
+			}
+		});
+
+	</script>
+</body>
+</html>

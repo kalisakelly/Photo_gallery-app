@@ -1,0 +1,38 @@
+.photo_gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gallery-item {
+    position: relative;
+    width: 75%; /* Adjust the width according to your preference */
+    margin: 10px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+}
+
+.download-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .download-button {
+    opacity: 1;
+}
+
+.btn-download {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
