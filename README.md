@@ -77,14 +77,23 @@ Registration Page
 Registration Page
 
 Login Page
+<img width="1196" alt="Screenshot 2023-05-16 at 19 26 30" src="https://github.com/kalisakelly/Photo_gallery-app/assets/101429002/53441867-e4d0-4688-8444-ff4c90625ecf">
+
 
 Login Page
 
-Upload Page
-Upload Page
+users
+<img width="1680" alt="Screenshot 2023-05-16 at 19 26 22" src="https://github.com/kalisakelly/Photo_gallery-app/assets/101429002/54f37c6c-8d90-4a9c-a6f4-7e2da62fe7de">
+
 
 Gallery Page
+<img width="1628" alt="Screenshot 2023-05-16 at 19 26 50" src="https://github.com/kalisakelly/Photo_gallery-app/assets/101429002/0332f1b9-639c-457b-bd3d-c834348328af">
+
 Gallery Page
+
+search
+<img width="862" alt="Screenshot 2023-05-16 at 19 27 03" src="https://github.com/kalisakelly/Photo_gallery-app/assets/101429002/7bfeb686-56a5-4f76-afaf-80e2cb946586">
+
 
 
 
